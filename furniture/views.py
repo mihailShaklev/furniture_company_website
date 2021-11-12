@@ -4,9 +4,6 @@ from .models import Post
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-import re
-
-regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
 class PostList(generic.ListView):
     model = Post
