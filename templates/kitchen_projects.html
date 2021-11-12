@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Кухни</title>
+{% endblock %}
+
+
+{% block projects %}
+<a href="{% url 'furniture' %}"><li class="menu-button-transition">Мебели</li></a>
+{% endblock %}
+
+{% block content %}
+<div class="row projects-title">
+    <div class="col-md-3 title-container">
+        <a href="{% url 'kitchens' %}"><h2 style="color:#EF8B59; font-weight:600">Кухни</h2></a>
+    </div>
+</div>
+<div class="row">
+    {% for kitchen in kitchens %}
+    <div class="col-md-4">
+        <div class="projects">
+            <a href="{% url 'post_detail' kitchen.slug %}"><img class="image container-shadow" src="{% static kitchen.image_1 %}"/></a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

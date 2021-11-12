@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+        <!-- Menu -->
+        {% block head %}
+        <title>Мебели</title>
+        {% endblock %}
+
+        {% block aboutUs%}
+        <a href="#aboutUs"><li class="menu-button-transition">За Нас</li></a>
+        {% endblock %}
+
+        {% block projects %}
+        <a href="#kitchens"><li class="menu-button-transition">Кухни</li></a>
+        <a href="#furniture"><li class="menu-button-transition">Мебели</li></a>
+        {% endblock %}
+
+        <!-- Lower header section -->
+        {% block content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4 style="color:#9DB97B">Монтаж на нови мебели</h4>
+                    <h1 style="font-weight:bold; font-size:55px">Кухни и мебели по поръчка.</h1>
+                    <p>Бързи и изгодни услуги.</p>
+                </div>
+                <div class="col-md-8">
+                    <img class="header-image" src="static/furniture/pics/010.jpg">
+                </div>
+            </div>
+        </div>
+
+        <!-- Kitchen projects section -->
+
+        <div class="container-fluid middle-container" id="kitchens">
+            <div class="row projects-title">
+                <div class="col-md-3 title-container">
+                    <a href="{% url 'kitchens' %}"><h2 style="color:white; font-weight:600">Кухни</h2></a>
+                </div>
+            </div>
+            <div class="row">
+                {% for kitchen in projects.kitchens %}
+                <div class="col-md-4">
+                    <div class="projects" style="background-color:#BDCED3">
+                       <a href="{% url 'post_detail' kitchen.slug %}"><img class="image container-shadow" src="{% static kitchen.image_1 %}"/></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Furniture projects section-->
+
+        <div class="container-fluid" id="furniture">
+            <div class="row projects-title">
+                <div class="col-md-3 title-container">
+                    <a href="{% url 'furniture' %}"><h2 style="color:#BDCED3; font-weight:600">Мебели</h2></a>
+                </div>
+            </div>
+            <div class="row">
+                {% for item in projects.furniture %}
+                <div class="col-md-4">
+                    <div class="projects">
+                       <a href="{% url 'post_detail' item.slug %}"><img class="image container-shadow" src="{% static item.image_1 %}"/></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <!-- About us section -->
+
+        <div class="container-fluid about-us" id="aboutUs">
+            <div class="row projects-title">
+                <div class="col-md-3 title-container">
+                    <h2 style="color:white; font-weight:600">За Нас</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="about-us-person">
+                        <img class="about-us-images" src="static/furniture/pics/kole.jpg">
+                        <p>Николай Герганов</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="about-us-text">
+                        <h3>What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when
+                        an unknown printer took a galley of type and scrambled it to make a type specimen book it has?
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="about-us-person">
+                        <img class="about-us-images" src="static/furniture/pics/jlemb.jpg">
+                        <p>инж. Владимир Шаклев</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}

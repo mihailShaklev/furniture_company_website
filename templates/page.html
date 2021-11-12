@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block head %}
+    <title>{{post.title}}</title>
+    {% endblock %}
+
+    {% block projects %}
+    <a href="{% url 'kitchens' %}"><li class="menu-button-transition">Кухни</li></a>
+    <a href="{% url 'furniture' %}"><li class="menu-button-transition">Мебели</li></a>
+    {% endblock %}
+        <!-- Recent projects section -->
+    {% block content %}
+        <div class="container-fluid" id="projects">
+            <div class="row projects-title">
+                <div class="col-md-3 title-container">
+                    <h2 style="color:#BDCED3; font-weight:600">{{post.title}}</h2>
+                    <p>{{post.description | safe}}</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="projects">
+                        <img class="image container-shadow" id="main" onclick="show('main')" src="{% static post.main_image %}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="projects">
+                       <img class="image container-shadow" id="image1" onclick="show('image1')" src="{% static post.image_1 %}"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="projects">
+                       <img class="image container-shadow" id="image2" onclick="show('image2')" src="{% static post.image_2 %}"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="projects">
+                        <img class="image container-shadow" id="image3" onclick="show('image3')" src="{% static post.image_3 %}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="projects">
+                       <img class="image container-shadow" id="image4" onclick="show('image4')" src="{% static post.image_4 %}"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="projects">
+                       <img class="image container-shadow" id="image5" onclick="show('image5')" src="{% static post.image_5 %}"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="projects">
+                       <img class="image container-shadow" id="image6" onclick="show('image6')" src="{% static post.image_6 %}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="modalImg">
+        </div>
+
+        <script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the image and insert it inside the modal
+            function show(id){
+                modal.style.display = "block";
+                img = document.getElementById(id);
+                var modalImg = document.getElementById("modalImg");
+                modalImg.src = img.src;
+
+            }
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+            modal.style.display = "none";
+            }
+        </script>
+
+    {% endblock %}

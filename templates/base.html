@@ -1,0 +1,112 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+        <!-- Add page titles here -->
+        {% endblock %}
+        <!-- Add the meta tag below in order to see the mobile version on mobile devices, otherwise it renders the site as for a desktop-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'furniture/styles.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </head>
+    <body>
+
+        <!-- Top header section -->
+
+        <div class="container-fluid" id="top">
+            <div class="row top-bar">
+                <div class="col-md-12">
+                    Обадете ни се! <a><i class="fa fa-phone"></i> 0879 555 555</a>
+                </div>
+            </div>
+
+            <!-- Menu section -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <ul>
+                        <a href="{% url 'home' %}"><li class="green-button menu-button-transition"><i class="fa fa-home" style="margin-right:5px"></i>Home</li></a>
+                        {% block aboutUs %}
+                        <!-- about us button goes here -->
+                        {% endblock %}
+                        <a href="{% url 'home' %}"><li><img src="{% static 'furniture/pics/logo.png' %}"></li></a>
+                        <a href="#contacts"><li class="menu-button-transition">Контакти</li></a>
+                        {% block projects %}
+                        <!-- kitchen and furniture buttons -->
+                        {% endblock %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+      <!-- Content section -->
+
+      {% block content %}
+
+      <!-- Content goes here -->
+
+      {% endblock %}
+
+        <!-- Contacts section -->
+
+        <div class="container-fluid" id="contacts">
+            <div class="row projects-title">
+                <div class="col-md-3 title-container">
+                    <h2 style="color:#EF8B59; font-weight:600">Контакти</h2>
+                </div>
+            </div>
+            {% if message %}
+            <div><p style="color:red;text-align:center">{{errorMessage}}</p></div>
+            {% endif %}
+            <div class="row contact-container">
+                <div class="col-md-5">
+                    <div class="contact-address">
+                        <p><i class="fa fa-map-marker"></i> София, България <i class="fa fa-phone contact-phone"></i> 0879 555 555</p>
+                    </div>
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.1188445057296!2d23.297087415465807!3d42.65883687916804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa853e8d36601b%3A0x3f0348839bac4e1e!2sul.%20%22Louis%20Eyer%22%20113%2C%201404%20Manastirski%20Livadi%2C%20Sofia!5e0!3m2!1sen!2sbg!4v1631698260055!5m2!1sen!2sbg" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <form class="w3-container w3-card-4 w3-padding-16 w3-white" action="/contact-form" method="POST">
+                     {% csrf_token %}
+                      <div class="w3-section">
+                          <label>Име:</label>
+                          <input class="w3-input" type="text" name="name" required>
+                      </div>
+                      <div class="w3-section">
+                          <label>Имейл:</label>
+                          <input class="w3-input" type="text" name="email" required>
+                      </div>
+                      <div class="w3-section">
+                        <label>Съобщение:</label>
+                        <input class="w3-input" type="text" name="message" required>
+                      </div>
+                      <button type="submit" class="button">Изпрати</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+
+        <div class="container-fluid footer">
+            <div class="row">
+                <div class="col-md-10 footer-text">
+                    <p>© Copyright 2021 - All Rights Reserved.</p>
+                </div>
+                <div class="col-md-2">
+                    <div style="position:relative;bottom:100px;z-index:1;" class="w3-tooltip w3-right">
+                        <span class="w3-text w3-padding w3-hide-small">Go To Top</span>
+                        <a href="#top"><span class="w3-xlarge">
+                        <i class="fa fa-arrow-circle-up"></i></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
